@@ -18,7 +18,7 @@ def show_recent_posts(context, num=5):
 @register.inclusion_tag('blog_app/inclusions/_archives.html', takes_context=True)
 def show_archives(context):
     return {
-        'data_list': Post.objects.dates('create_time', 'month', order='DESC')
+        'date_list': Post.objects.dates('create_time', 'month', order='DESC')
     }
 
 

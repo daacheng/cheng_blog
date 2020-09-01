@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Category, Tag
 import markdown
 import re
 from markdown.extensions.toc import TocExtension
@@ -29,4 +29,16 @@ def detail(request, pk):
 def archive(request, year, month):
     post_list = Post.objects.filter(create_time__year=year,
                                     create_time__month=month).order_by('-create_time')
+    return render(request, 'blog_app/index.html', context={'post_list': post_list})
+
+
+def category(request, pk):
+    cate = get_object_or_404(Category, pk=pk)
+    post_list = Post.objects.filter(category=cate).order_by('-create_time')
+    return render(request, 'blog_app/index.html', context={'post_list': post_list})
+
+
+def tag(request, pk):
+    tag_ = get_object_or_404(Tag, pk=pk)
+    post_list = Post.objects.filter(tag=tag_).order_by('-create_time')
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
