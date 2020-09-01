@@ -8,7 +8,7 @@ from django.utils.text import slugify
 
 
 def index(request):
-    post_list = Post.objects.all().order_by('-create_time')
+    post_list = Post.objects.all()
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
 
 
@@ -28,17 +28,17 @@ def detail(request, pk):
 
 def archive(request, year, month):
     post_list = Post.objects.filter(create_time__year=year,
-                                    create_time__month=month).order_by('-create_time')
+                                    create_time__month=month)
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
 
 
 def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
-    post_list = Post.objects.filter(category=cate).order_by('-create_time')
+    post_list = Post.objects.filter(category=cate)
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
 
 
 def tag(request, pk):
     tag_ = get_object_or_404(Tag, pk=pk)
-    post_list = Post.objects.filter(tag=tag_).order_by('-create_time')
+    post_list = Post.objects.filter(tag=tag_)
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
