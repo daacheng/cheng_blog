@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 import markdown
 from django.utils.html import strip_tags
+from mdeditor.fields import MDTextField
 
 
 class Category(models.Model):
@@ -30,7 +31,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.CharField('标题', max_length=100)
-    body = models.TextField('正文')
+    body = MDTextField('正文')
     create_time = models.DateTimeField('创建时间', default=timezone.now)
     modify_time = models.DateTimeField('修改时间', default=timezone.now)
     excerpt = models.CharField('摘要', max_length=200, blank=True)
