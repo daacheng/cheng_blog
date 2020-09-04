@@ -6,13 +6,15 @@ import re
 from markdown.extensions.toc import TocExtension
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
+from pure_pagination import PaginationMixin
 
 
-class IndexView(ListView):
+class IndexView(PaginationMixin, ListView):
     # 类视图
     model = Post  # 指定模型
     template_name = 'blog_app/index.html'  # 指定要渲染的页面
     context_object_name = 'post_list'  # 指定获取的模型列表数据保存的变量名，这个变量会被传递给模板。
+    paginate_by = 1
 
 
 class CategoryView(ListView):
