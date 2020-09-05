@@ -2,6 +2,7 @@ asgiref==3.2.10
 Django==3.1
 django-mdeditor==0.1.18
 django-pure-pagination==0.3.0
+django-simpleui==2020.7
 gunicorn==20.0.4
 importlib-metadata==1.7.0
 Markdown==3.2.2

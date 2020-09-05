@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{% static 'blog_app/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog_app/css/pace.css' %}">
     <link rel="stylesheet" href="{% static 'blog_app/css/custom.css' %}">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!--    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+    <link rel="stylesheet" href="{% static 'blog_app/css/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog_app/css/github.min.css' %}">
 
     <!-- js -->
@@ -162,8 +163,8 @@
 
 <!--<script src="js/script.js"></script>-->
 <script src="{% static 'blog_app/js/script.js' %}"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+<script src="{% static 'blog_app/js/highlight.min.js' %}"></script>
+<script src="{% static 'blog_app/js/highlightjs-line-numbers.min.js' %}"></script>
 <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
