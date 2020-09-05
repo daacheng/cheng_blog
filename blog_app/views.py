@@ -1,12 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Post, Category, Tag
 import markdown
 import re
+from django.db.models import Q
 from markdown.extensions.toc import TocExtension
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
 from pure_pagination import PaginationMixin
+from django.contrib import messages
 
 
 class IndexView(PaginationMixin, ListView):
@@ -73,6 +75,18 @@ class PostDetailView(DetailView):
         # m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
         # post.toc = m.group(1) if m is not None else ''
         return post
+
+
+def search(request):
+    # 表单get方法提交的参数在request.GET中
+    q = request.GET.get('q')
+    if not q:
+        error_message = '请输入搜索关键字'
+        messages.add_message(request, messages.ERROR, error_message, extra_tags='danger')
+        return redirect('blog_app:index')
+
+    post_list = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
+    return render(request, 'blog_app/index.html', context={'post_list': post_list})
 
 
 def index(request):

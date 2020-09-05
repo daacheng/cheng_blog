@@ -14,6 +14,7 @@ urlpatterns = [
     path('tags/<int:pk>', views.TagView.as_view(), name='tag'),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'all/rss/', AllPostRssFeed(), name='rss'),
+    path('search/', views.search, name='search'),
 ]
 
 
