@@ -63,15 +63,15 @@ class PostDetailView(DetailView):
     def get_object(self, queryset=None):
         # 重写父类方法，对返回的body进行处理
         post = super().get_object(queryset=None)
-        md = markdown.Markdown(extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            TocExtension(slugify=slugify),
-        ])
-        post.body = md.convert(post.body)
+        # md = markdown.Markdown(extensions=[
+        #     'markdown.extensions.extra',
+        #     'markdown.extensions.codehilite',
+        #     TocExtension(slugify=slugify),
+        # ])
+        # post.body = md.convert(post.body)
         # 自动生成文章目录 如果没有目录，则不显示
-        m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
-        post.toc = m.group(1) if m is not None else ''
+        # m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+        # post.toc = m.group(1) if m is not None else ''
         return post
 
 

@@ -3,6 +3,7 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url, include
+from .feeds import AllPostRssFeed
 
 app_name = 'blog_app'
 urlpatterns = [
@@ -12,6 +13,7 @@ urlpatterns = [
     path('categorys/<int:pk>', views.CategoryView.as_view(), name='category'),
     path('tags/<int:pk>', views.TagView.as_view(), name='tag'),
     url(r'mdeditor/', include('mdeditor.urls')),
+    url(r'all/rss/', AllPostRssFeed(), name='rss'),
 ]
 
 

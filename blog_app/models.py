@@ -5,6 +5,11 @@ from django.urls import reverse
 import markdown
 from django.utils.html import strip_tags
 from mdeditor.fields import MDTextField
+import markdown
+import re
+from markdown.extensions.toc import TocExtension
+from django.utils.text import slugify
+from django.utils.functional import cached_property
 
 
 class Category(models.Model):
@@ -29,6 +34,20 @@ class Tag(models.Model):
         return self.name
 
 
+def generate_rich_content(value):
+    # markdown转html
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        TocExtension(slugify=slugify),
+    ])
+    content = md.convert(value)
+    # 自动生成文章目录 如果没有目录，则不显示
+    m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+    toc = m.group(1) if m is not None else ''
+    return {'content': content, 'toc': toc}
+
+
 class Post(models.Model):
     title = models.CharField('标题', max_length=100)
     body = MDTextField('正文')
@@ -40,6 +59,19 @@ class Post(models.Model):
     tag = models.ManyToManyField(Tag, verbose_name='标签', blank=True)
     author = models.ForeignKey(User, verbose_name='作者', on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0, editable=False)  # 浏览量
+
+    @cached_property
+    def rich_content(self):
+        # cached_property将方法转为属性，以属性的方式获取方法的返回值，同时将返回值缓存起来
+        return generate_rich_content(self.body)
+
+    @property
+    def toc(self):
+        return self.rich_content.get('toc', '')
+
+    @property
+    def body_html(self):
+        return self.rich_content.get('content', '')
 
     class Meta:
         verbose_name = '文章'
