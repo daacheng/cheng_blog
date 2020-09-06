@@ -11,6 +11,7 @@ urlpatterns = [
     path('posts/<int:pk>', views.PostDetailView.as_view(), name='detail'),
     path('archives/<int:year>/<int:month>', views.ArchiveView.as_view(), name='archive'),
     path('categorys/<int:pk>', views.CategoryView.as_view(), name='category'),
+    path('categorys/', views.category, name='categorys'),
     path('tags/<int:pk>', views.TagView.as_view(), name='tag'),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'all/rss/', AllPostRssFeed(), name='rss'),
