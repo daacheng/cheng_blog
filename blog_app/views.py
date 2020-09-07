@@ -9,6 +9,7 @@ from django.utils.text import slugify
 from django.views.generic import ListView, DetailView
 from pure_pagination import PaginationMixin
 from django.contrib import messages
+from django.db.models.aggregates import Count
 
 
 class IndexView(PaginationMixin, ListView):
@@ -117,8 +118,22 @@ def archive(request, year, month):
     return render(request, 'blog_app/index.html', context={'post_list': post_list})
 
 
-def category(request):
-    return render(request, 'blog_app/categorys.html')
+def show_categorys(request):
+    category_list = Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    return render(request, 'blog_app/categorys.html', context={'category_list': category_list})
+
+
+def show_archives(request):
+    archives_info = {}
+    create_time_set = Post.objects.dates('create_time', 'day', order='DESC')
+    for create_time in create_time_set:
+        year = create_time.year
+        month = create_time.month
+        post_list = Post.objects.filter(create_time__year=year,
+                                        create_time__month=month)
+        archives_info['{}-{}'.format(year, month)] = post_list
+    print(create_time_set)
+    return render(request, 'blog_app/archives.html', context={'archives_info': archives_info})
 
 
 def tag(request, pk):
