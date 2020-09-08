@@ -17,7 +17,7 @@ class IndexView(PaginationMixin, ListView):
     model = Post  # 指定模型
     template_name = 'blog_app/index.html'  # 指定要渲染的页面
     context_object_name = 'post_list'  # 指定获取的模型列表数据保存的变量名，这个变量会被传递给模板。
-    paginate_by = 1
+    paginate_by = 10
 
 
 class CategoryView(ListView):
