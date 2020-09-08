@@ -5,7 +5,7 @@
         <ul class="list-group">
             <li class="list-group-item list-group-item-info">
                 <span class="badge">{{ category.num_posts }}</span>
-                <a href="{% url 'blog_app:category' category.pk %}">{{ category.name }}</a>
+                <a class="btn btn-success btn-lg" href="{% url 'blog_app:category' category.pk %}">{{ category.name }}</a>
             </li>
         </ul>
     {% empty %}

@@ -132,7 +132,6 @@ def show_archives(request):
         post_list = Post.objects.filter(create_time__year=year,
                                         create_time__month=month)
         archives_info['{}-{}'.format(year, month)] = post_list
-    print(create_time_set)
     return render(request, 'blog_app/archives.html', context={'archives_info': archives_info})
 
 
