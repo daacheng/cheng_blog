@@ -14,8 +14,6 @@ register = template.Library()
 @register.filter
 def if_time_recent(time_):
     time_stamp = time.mktime(time.strptime(str(time_), '%Y-%m-%d'))
-    print(time_stamp)
-    print(time.time() - time_stamp)
     if int(time.time() - time_stamp) > 3600 * 24:
         return None
     return time_

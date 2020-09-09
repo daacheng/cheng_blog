@@ -1,46 +1,72 @@
 {% extends 'base.html' %}
-{% load blog_extras %}
 
 {% block main %}
-<div class="content" style="">
-    <div class="cont 1000">
-        <div class="list-item">
-            {% for post in post_list %}
-            <div class="item">
-                <div class="layui-fluid">
-                    <div class="layui-row">
-                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md6 layui-col-md-offset2">
-                            <div class="item-cont">
-                                <h3>{{ post.title }}{{ post.create_time.date|if_time_recent }}
-                                    {% if post.create_time.date|if_time_recent %}
-                                        <button class="layui-btn layui-btn-danger new-icon">new</button>
-                                    {% else %}
-                                    {% endif %}
-                                </h3>
-                                <h5>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="layui-icon layui-icon-note"></i>&nbsp;{{ post.category.name }}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="layui-icon layui-icon-fire"></i>&nbsp;{{ post.views }}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="layui-icon layui-icon-reply-fill"></i>&nbsp;{{ post.comment_set.count }}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <i class="layui-icon layui-icon-date"></i>&nbsp;{{ post.create_time.date }}</h5>
-                                <p>{{ post.excerpt }}...</p>
-                                <a href="{% url 'blog_app:detail' post.pk %}" class="go-icon"></a>
-                            </div>
-                            <hr class="layui-bg-gray">
-                        </div>
-                    </div>
+    {% for post in post_list %}
+        <article class="post post-{{ post.pk }}">
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <a href="single.html" href="{{ post.get_absolute_url }}">{{post.title}}</a>
+                </h1>
+                <div class="entry-meta">
+                    <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+                    <span class="post-date">
+                        <a href="#">
+                            <time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time }}</time>
+                        </a>
+                    </span>
+                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                    <span class="comments-link"><a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
+                    <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                <p>{{ post.excerpt }}...</p>
+                <div class="read-more cl-effect-14">
+                    <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
                 </div>
             </div>
-            {% empty %}
-            暂无文章
-            {% endfor %}
-        </div>
+        </article>
+    {% empty %}
+    {% endfor %}
 
-        <div id="pagination" style="text-align: center;"></div>
+    <div class="text-center pagination" style="width: 100%">
+      <ul>
+        {% if page_obj.has_previous %}
+          <li><a href="?{{ page_obj.previous_page_number.querystring }}"
+                 class="prev">&lsaquo;&lsaquo; </a></li>
+        {% else %}
+          <li><span class="disabled prev">&lsaquo;&lsaquo; </span></li>
+        {% endif %}
+        {% for page in page_obj.pages %}
+          {% if page %}
+            {% ifequal page page_obj.number %}
+              <li class="current"><a href="#">{{ page }}</a></li>
+            {% else %}
+              <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+            {% endifequal %}
+          {% else %}
+            ...
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+          <li><a href="?{{ page_obj.next_page_number.querystring }}" class="next"> &rsaquo;&rsaquo;</a>
+          </li>
+        {% else %}
+          <li><span class="disabled next"> &rsaquo;&rsaquo;</span></li>
+        {% endif %}
+      </ul>
     </div>
-</div>
-{% endblock main %}
 
+<!--    {% if is_paginated %}-->
+<!--        <div class="pagination-simple">-->
+<!--            {% if page_obj.has_previous %}-->
+<!--                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>-->
+<!--            {% endif %}-->
+<!--            <span class="current">第{{ page_obj.number }}页/共{{ paginator.num_pages }}页</span>-->
+<!--            {% if page_obj.has_next %}-->
+<!--                <a href="?page={{ page_obj.next_page_number }}">下一页</a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    {% endif %}-->
+{% endblock main %}
 
