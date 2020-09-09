@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load blog_extras %}
 
 {% block main %}
 <div class="content" style="">
@@ -10,7 +11,12 @@
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm12 layui-col-md6 layui-col-md-offset2">
                             <div class="item-cont">
-                                <h3>{{ post.title }}<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
+                                <h3>{{ post.title }}{{ post.create_time.date|if_time_recent }}
+                                    {% if post.create_time.date|if_time_recent %}
+                                        <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                    {% else %}
+                                    {% endif %}
+                                </h3>
                                 <h5>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <i class="layui-icon layui-icon-note"></i>&nbsp;{{ post.category.name }}
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,7 +26,7 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <i class="layui-icon layui-icon-date"></i>&nbsp;{{ post.create_time.date }}</h5>
                                 <p>{{ post.excerpt }}...</p>
-                                <a href="details.html" class="go-icon"></a>
+                                <a href="{% url 'blog_app:detail' post.pk %}" class="go-icon"></a>
                             </div>
                             <hr class="layui-bg-gray">
                         </div>

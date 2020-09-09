@@ -1,12 +1,24 @@
 from django import template
 from ..models import Post, Tag, Category
 from django.db.models.aggregates import Count
+import time
 
 register = template.Library()
 
 """
     自定义模板标签
 """
+
+
+# 注册过滤器
+@register.filter
+def if_time_recent(time_):
+    time_stamp = time.mktime(time.strptime(str(time_), '%Y-%m-%d'))
+    print(time_stamp)
+    print(time.time() - time_stamp)
+    if int(time.time() - time_stamp) > 3600 * 24:
+        return None
+    return time_
 
 
 @register.inclusion_tag('blog_app/inclusions/_recent_posts.html', takes_context=True)
