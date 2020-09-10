@@ -95,7 +95,7 @@ class Post(models.Model):
         # 先将 Markdown 文本渲染成 HTML 文本
         # strip_tags 去掉 HTML 文本的全部 HTML 标签
         # 从文本摘取前 54 个字符赋给 excerpt
-        self.excerpt = strip_tags(md.convert(self.body))[:54]
+        self.excerpt = strip_tags(md.convert(self.body))[:150]
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

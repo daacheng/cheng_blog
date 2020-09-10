@@ -71,13 +71,15 @@ class PostDetailView(DetailView):
             'markdown.extensions.codehilite',
             TocExtension(slugify=slugify),
         ])
-        print(post.body)
         post.body = md.convert(post.body)
-        print(post.body)
         # 自动生成文章目录 如果没有目录，则不显示
         # m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
         # post.toc = m.group(1) if m is not None else ''
         return post
+
+
+def profile(request):
+    return render(request, 'blog_app/profile.html')
 
 
 def search(request):

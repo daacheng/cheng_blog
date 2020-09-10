@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+{% load static %}
+
+{% block container %}
+<link href="{% static 'blog_app/assets/fonts/font-awesome/css/font-awesome.min.css' %}" type="text/css" rel="stylesheet">
+<link href="{% static 'blog_app/assets/css/styles.css' %}" type="text/css" rel="stylesheet">
+<link href="{% static 'blog_app/assets/plugins/codeprettifier/prettify.css' %}" type="text/css" rel="stylesheet">
+<link href="{% static 'blog_app/assets/plugins/iCheck/skins/minimal/blue.css' %}" type="text/css" rel="stylesheet">
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-profile panel-midnightblue">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="https://avatars0.githubusercontent.com/u/29137126?s=460&u=a18e183ab0835b841e71e294c05ad6fae89f086e&v=4" alt="" class="avatar pull-left" style="margin: 0 20px 20px 0">
+						<div class="table-responsive table-userinfo">
+							<h3 class="mt0">Jane Doe</h3><table class="table table-condensed">
+								<tbody>
+									<tr>
+										<td>Web</td>
+										<td><a href="#">www.johndoe.com</a></td>
+									</tr>
+									<tr>
+										<td>Email</td>
+										<td><a href="">doe@lime.com</a></td>
+									</tr>
+									<tr>
+										<td>Phone</td>
+										<td>(123)-342-5412</td>
+									</tr>
+									<tr>
+										<td>Position</td>
+										<td>Designer</td>
+									</tr>
+									<tr>
+										<td>Status</td>
+										<td>Member</td>
+									</tr>
+									<tr>
+										<td>Social</td>
+										<td>
+											<a href="#" class="btn btn-social btn-skype btn-xs"><i class="fa fa-skype"></i></a>
+											<a href="#" class="btn btn-social btn-facebook btn-xs"><i class="fa fa-facebook"></i></a>
+											<a href="#" class="btn btn-social btn-twitter btn-xs"><i class="fa fa-twitter"></i></a>
+											<a href="#" class="btn btn-social btn-googleplus btn-xs"><i class="fa fa-google-plus"></i></a>
+											<a href="#" class="btn btn-social btn-flickr btn-xs"><i class="fa fa-flickr"></i></a>
+											<a href="#" class="btn btn-social btn-linkedin btn-xs"><i class="fa fa-linkedin"></i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3 class="mt0">About</h3>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores in eveniet sapiente error fuga tenetur ex ea dignissimos voluptas ab molestiae eos totam quo dolorem maxime illo neque quia itaque. Asperiores in eveniet sapiente error fuga tenetur ex ea dignissimos voluptas ab molestiae eos totam quo dolorem maxime illo neque quia itaque.
+						</p>
+						<p>
+							Dsperiores in eveniet sapiente error fuga tenetur ex ea dignissimos voluptas ab molestiae eos totam quo dolorem maxime illo neque quia itaque.
+						</p>
+					</div>
+				</div>
+				<hr class="outsider">
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock container %}
+
+

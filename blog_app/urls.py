@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'all/rss/', AllPostRssFeed(), name='rss'),
     path('search/', views.search, name='search'),
+    path('profile/', views.profile, name='profile'),
 ]
 
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block main %}
+{% block container %}
     {% for category in category_list %}
         <ul class="list-group">
             <li class="list-group-item list-group-item-info">
@@ -11,5 +11,5 @@
     {% empty %}
       暂无分类！
     {% endfor %}
-{% endblock main %}
+{% endblock container %}
 

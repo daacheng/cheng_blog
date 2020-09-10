@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!--    <link rel="stylesheet" href="{% static 'blog_app/css/ionicons.min.css' %}">-->
     <link rel="stylesheet" href="{% static 'blog_app/css/github.min.css' %}">
+<!--    <link href="https://cdn.bootcdn.net/ajax/libs/github-markdown-css/0.1.0/github-markdown.min.css" rel="stylesheet">-->
+<!--    <link href="https://cdn.bootcdn.net/ajax/libs/github-markdown-css/0.1.0/github-markdown.css" rel="stylesheet">-->
 
     <!-- js -->
 <!--    <script src="js/jquery-2.1.3.min.js"></script>-->
@@ -30,36 +32,37 @@
     <script src="{% static 'blog_app/js/modernizr.custom.js' %}"></script>
 
     <style>
-    .codehilite {
-      padding: 0;
-    }
+        .codehilite {
+          padding: 0;
+        }
 
-    /* for block of numbers */
-    .hljs-ln-numbers {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+        /* for block of numbers */
+        .hljs-ln-numbers {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
 
-      text-align: center;
-      color: #ccc;
-      border-right: 1px solid #CCC;
-      vertical-align: top;
-      padding-right: 5px;
-    }
+          text-align: center;
+          color: #ccc;
+          border-right: 1px solid #CCC;
+          vertical-align: top;
+          padding-right: 5px;
+        }
 
-    .hljs-ln-n {
-      width: 30px;
-    }
+        .hljs-ln-n {
+          width: 30px;
+        }
 
-    /* for block of code */
-    .hljs-ln .hljs-ln-code {
-      padding-left: 10px;
-      white-space: pre;
-    }
+        /* for block of code */
+        .hljs-ln .hljs-ln-code {
+          padding-left: 10px;
+          white-space: pre;
+        }
     </style>
+
 </head>
 {% if messages %}
     {% for message in messages %}
@@ -90,12 +93,17 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="cl-effect-11"><a href="index.html" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="full-width.html" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="about.html" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="contact.html" data-hover="联系">联系</a></li>
-                            <li class="cl-effect-11"><a href="{% url 'blog_app:show_categorys' %}" data-hover="分类">分类</a></li>
-                            <li class="cl-effect-11"><a href="{% url 'blog_app:show_archives' %}" data-hover="归档">归档</a></li>
+                            <li class="cl-effect-11">
+                                <a href="{% url 'blog_app:index' %}" data-hover="首页">首页</a>
+                            </li>
+                            <li class="cl-effect-11">
+                                <a href="{% url 'blog_app:show_categorys' %}" data-hover="分类">分类</a>
+                            </li>
+                            <li class="cl-effect-11"><a href="{% url 'blog_app:profile' %}" data-hover="关于">关于</a></li>
+<!--                            <li class="cl-effect-11"><a href="{% url 'blog_app:show_archives' %}" data-hover="归档">归档</a></li>-->
+                            <li class="cl-effect-11">
+                                <a href="{% url 'blog_app:rss' %}"><span class="ion-social-rss-outline"></span>RSS</a>
+                            </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -116,24 +124,8 @@
 <div class="content-body">
     <div class="container">
         <div class="row">
-            <aside class="col-md-4">
-                {% block toc %}
-                {% endblock toc %}
-
-                {% show_recent_posts %}
-                {% show_archives %}
-                {% show_categories %}
-                {% show_tags %}
-
-                <div class="rss">
-                 <a href="{% url 'blog_app:rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
-                </div>
-            </aside>
-            <main class="col-md-8">
-                {% block main %}
-                {% endblock main %}
-            </main>
-
+            {% block container %}
+            {% endblock container %}
         </div>
     </div>
 </div>
@@ -141,10 +133,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="copyright">&copy 2017 - 采集自<a href="http://www.cssmoban.com/"
-                                                        target="_blank" title="模板之家">模板之家</a>
-                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
-                </p>
             </div>
         </div>
     </div>
@@ -155,10 +143,17 @@
     <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
     <nav>
         <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="full-width.html">博客</a></li>
-            <li><a href="about.html">关于</a></li>
-            <li><a href="contact.html">联系</a></li>
+            <li class="cl-effect-11">
+                <a href="{% url 'blog_app:index' %}" data-hover="首页">首页</a>
+            </li>
+            <li class="cl-effect-11">
+                <a href="{% url 'blog_app:show_categorys' %}" data-hover="分类">分类</a>
+            </li>
+            <li class="cl-effect-11"><a href="{% url 'blog_app:profile' %}" data-hover="关于">关于</a></li>
+<!--                            <li class="cl-effect-11"><a href="{% url 'blog_app:show_archives' %}" data-hover="归档">归档</a></li>-->
+            <li class="cl-effect-11">
+                <a href="{% url 'blog_app:rss' %}"><span class="ion-social-rss-outline"></span>RSS</a>
+            </li>
         </ul>
     </nav>
 </div>
