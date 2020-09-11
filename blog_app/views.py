@@ -79,7 +79,18 @@ class PostDetailView(DetailView):
 
 
 def profile(request):
-    return render(request, 'blog_app/profile.html')
+    context = {
+        'pic_url': 'https://avatars0.githubusercontent.com/u/29137126',
+        'nick_name': '大诚',
+        'email': '1193685537@qq.com',
+        'position': '武汉',
+        'status': 'coding...',
+        'website': 'http://www.daacheng.top',
+        'zhihu': 'https://www.zhihu.com/people/mrxian-sheng-65',
+        'github': 'https://github.com/daacheng',
+    }
+
+    return render(request, 'blog_app/profile.html', context=context)
 
 
 def search(request):

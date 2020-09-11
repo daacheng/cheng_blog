@@ -13,7 +13,9 @@ from django.utils.functional import cached_property
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField('分类名称', max_length=20)
+    text = models.CharField('分类简介', max_length=200, blank=True)
+    url = models.URLField('图片', max_length=50, blank=True)
 
     class Meta:
         verbose_name = '分类'

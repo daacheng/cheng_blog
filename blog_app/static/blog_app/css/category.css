@@ -1,0 +1,53 @@
+@charset "utf-8";
+/*
+ 
+ * 17素材vip建站专区模块代码
+ * 详尽信息请看官网：http://www.17sucai.com/pins/vip
+ *
+ * Copyright , 温州易站网络科技有限公司版权所有
+ * 图片不能商用，代码可商用。
+ 
+ * 请尊重原创，未经允许请勿转载。
+ * 在保留版权的前提下可应用于个人或商业用途
+ 
+*/
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Arial";font-weight:normal}
+body{color:#6F7479;}
+:after,:before{box-sizing:inherit}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+/*栅格，防塌陷*/
+.col-sm-6{float:left;width:50%}
+.AGrid-row{clear:both}
+.AGrid-row:before,.AGrid-row:after{content:" ";display:table;line-height:0}
+.AGrid-row:after{clear:both}
+/*大盒子背景*/
+.bg-white{background-color:#fff}
+.developer-toolbag-block{max-width:1200px;text-align:center;padding:50px 0;clear:both;margin:0 auto}
+/*标题*/
+.titleBar{text-align:center}
+.titleBar .caption{font-size:36px;color:#252b3a;letter-spacing:0;text-align:center;line-height:46px;margin-bottom:10px}
+.descript{margin-bottom:40px;font-size:16px;color:#A0A2A8}
+.center-layer{text-align:center;font-size:0}
+/*列表*/
+.tool-package>div{padding:0 10px}
+.tool-package .tile{height:134px;transition:box-shadow .5s ease;padding:19px 24px 20px 25px;margin-top:20px;position:relative;border-radius:2px;border:1px solid #ddd}
+/*鼠标悬浮列表上方渐变色*/
+.tool-package 
+.tile:before{content:"";position:absolute;display:inline-block;left:0;top:0;width:0;height:3px;background:rgba(21,0,255,0.10);background-repeat:no-repeat;background-image:linear-gradient(-252deg,rgba(1,78,204,0.80) 0%,rgba(1,182,201,0.50) 98%)}
+.tool-package .tile:hover:before{width:100%}
+.tool-package .tile:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.10)}
+/*图标*/
+.tool-package .center-layer>.layer-figure{width:48px;vertical-align:top;float:left}
+/*文字*/
+.tool-package .center-layer .layer-text{width:75%;float:left;padding:0 20px;text-align:center}
+.tool-package .dev-list{font-size:18px;color:#252b3a;margin-bottom:4px;width:75%;float:left;text-align:left;padding-left:20px}
+.tool-package .dev-text{font-size:12px;word-break:break-all;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;height:63px;line-height:21px;color:#A0A2A8;text-align:left}
+/*立即体验按钮*/
+.tool-package .layer-btn{width:87px;border:1px solid #3b516a;border-radius:1px;font-size:12px;color:#252b3a;display:inline-block;cursor:pointer;float:right;position:absolute;top:50px;right:34px;text-align:center}
+.tool-package .layer-btn p{line-height:30px;height:30px}
+.tool-package .layer-btn:hover{color:#f66f6a;border:1px solid #f66f6a;border-radius:1px}
+/*一键购买按钮*/
+.buy-now{font-size:18px;color:#ffffff;text-align:center;line-height:22px;padding:13px 40px;display:inline-block;margin:0 auto;background:#f66f6a;cursor:pointer;margin-top:40px;border-radius:2px}
+.buy-now:hover{box-shadow:0 8px 16px 0 rgba(227,24,31,0.30)}

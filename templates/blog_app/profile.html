@@ -14,39 +14,36 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-6">
-						<img src="https://avatars0.githubusercontent.com/u/29137126?s=460&u=a18e183ab0835b841e71e294c05ad6fae89f086e&v=4" alt="" class="avatar pull-left" style="margin: 0 20px 20px 0">
+						<img src="{{ pic_url }}" alt="" class="avatar pull-left" style="margin: 0 20px 20px 0">
 						<div class="table-responsive table-userinfo">
-							<h3 class="mt0">Jane Doe</h3><table class="table table-condensed">
+							<h3 class="mt0">{{ nick_name }}</h3><table class="table table-condensed">
 								<tbody>
 									<tr>
-										<td>Web</td>
-										<td><a href="#">www.johndoe.com</a></td>
+										<td>知乎</td>
+										<td><a href="{{ zhihu }}">哒哒哒大大诚主页</a></td>
 									</tr>
 									<tr>
-										<td>Email</td>
-										<td><a href="">doe@lime.com</a></td>
+										<td>邮箱</td>
+										<td><a href="">{{ email }}</a></td>
 									</tr>
 									<tr>
-										<td>Phone</td>
-										<td>(123)-342-5412</td>
+										<td>位置</td>
+										<td>{{ position }}</td>
 									</tr>
 									<tr>
-										<td>Position</td>
-										<td>Designer</td>
+										<td>状态</td>
+										<td class="success">{{ status }}</td>
 									</tr>
 									<tr>
-										<td>Status</td>
-										<td>Member</td>
-									</tr>
-									<tr>
-										<td>Social</td>
+										<td>Github</td>
 										<td>
-											<a href="#" class="btn btn-social btn-skype btn-xs"><i class="fa fa-skype"></i></a>
-											<a href="#" class="btn btn-social btn-facebook btn-xs"><i class="fa fa-facebook"></i></a>
-											<a href="#" class="btn btn-social btn-twitter btn-xs"><i class="fa fa-twitter"></i></a>
-											<a href="#" class="btn btn-social btn-googleplus btn-xs"><i class="fa fa-google-plus"></i></a>
-											<a href="#" class="btn btn-social btn-flickr btn-xs"><i class="fa fa-flickr"></i></a>
-											<a href="#" class="btn btn-social btn-linkedin btn-xs"><i class="fa fa-linkedin"></i></a>
+											<a href="{{ github }}">
+												<i class="fa fa-github" aria-hidden="true"></i>
+												daacheng
+											</a>
+<!--											<a href="#">-->
+<!--												<i class="fa fa-weixin" aria-hidden="true"></i>-->
+<!--											</a>-->
 										</td>
 									</tr>
 								</tbody>
