@@ -88,6 +88,8 @@ def profile(request):
         'website': 'http://www.daacheng.top',
         'zhihu': 'https://www.zhihu.com/people/mrxian-sheng-65',
         'github': 'https://github.com/daacheng',
+        'about_me': '做过数据对接，爬虫，网络编程，了解一点机器学习与数据分析，想用python做点有趣的事情，'
+                    '希望结识更多的朋友，如果你有好的idea请联系我.....',
     }
 
     return render(request, 'blog_app/profile.html', context=context)

@@ -4,38 +4,29 @@
 {% block container %}
     <link href="{% static 'blog_app/css/category.css' %}" type="text/css" rel="stylesheet">
 
-    <div class="bg-white">
-	<div class="developer-toolbag-block">
-		<div class="AGrid-row  tool-package">
-			{% for category in category_list %}
-				<div class="col-sm-6 ">
-					<div class="tile center-layer">
-						<div class="layer-figure">
-							<img src="{{ category.url }}">
-						</div>
-						<h2 class="dev-list">{{ category.name }}</h2>
-
-						<div class="layer-text">
-							<p class="dev-text">
-								{{ category.text }}
-							</p>
-							<div class="layer-btn">
-								<a href="{% url 'blog_app:category' category.pk %}">
-									<p>文章列表({{ category.num_posts }})</p>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			{% empty %}
-			  暂无分类！
-			{% endfor %}
-
+    <div class="meal-box" style="padding: 5px 0 0 0;">
+		<div class="meal-cut">
+			<ul style="padding: 5px 0 60px 0;">
+				{% for category in category_list %}
+				<li>
+					<span>
+					  <i class="fa fa-service"></i>
+					  <h3>{{ category.name }}</h3>
+					  <p>{{ category.text }}</p>
+					  <b></b>
+					  <font>
+						<a target="_blank" rel="nofollow" href="{% url 'blog_app:category' category.pk %}" style="width:100%">
+							文章列表({{ category.num_posts }})
+						</a>
+					  </font>
+					</span>
+				</li>
+				{% empty %}
+				  暂无分类！
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
-</div>
-
-
 
 {% endblock container %}
 
