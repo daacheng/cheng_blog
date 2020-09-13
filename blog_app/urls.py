@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url, include
 from .feeds import AllPostRssFeed
+from django.views.static import serve
+from blog.settings import MEDIA_ROOT
 
 app_name = 'blog_app'
 urlpatterns = [
@@ -18,6 +20,8 @@ urlpatterns = [
     url(r'all/rss/', AllPostRssFeed(), name='rss'),
     path('search/', views.search, name='search'),
     path('profile/', views.profile, name='profile'),
+    # 处理 media 信息，用于图片获取
+    url(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
 ]
 
 

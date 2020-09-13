@@ -13,8 +13,8 @@
                             <time class="entry-date" datetime="{{ post.create_time }}">{{ post.create_time }}</time>
                         </a>
                     </span>
-                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                    <span class="comments-link"><a href="#comment-area">{{ post.comment_set.count }} 评论</a></span>
+<!--                    <span class="post-author"><a href="#">{{ post.author }}</a></span>-->
+<!--                    <span class="comments-link"><a href="#comment-area">{{ post.comment_set.count }} 评论</a></span>-->
                     <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
                 </div>
             </header>
@@ -22,17 +22,19 @@
                 {{ post.body_html|safe }}
             </div>
         </article>
-        <section class="comment-area" id="comment-area">
-            <hr>
-            <h3>发表评论</h3>
-            {% show_comment_form post %}
-            <div class="comment-list-panel">
-                {% show_comments post %}
-            </div>
-        </section>
     </div>
-
 {% endblock container %}
+<!--        <section class="comment-area" id="comment-area">-->
+<!--            <hr>-->
+<!--            <h3>发表评论</h3>-->
+<!--            {% show_comment_form post %}-->
+<!--            <div class="comment-list-panel">-->
+<!--                {% show_comments post %}-->
+<!--            </div>-->
+<!--        </section>-->
+
+
+
 
 <!--{% block toc %}-->
 <!--    {% if post.toc %}-->
