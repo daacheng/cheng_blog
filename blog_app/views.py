@@ -20,10 +20,11 @@ class IndexView(PaginationMixin, ListView):
     paginate_by = 10
 
 
-class CategoryView(ListView):
+class CategoryView(PaginationMixin, ListView):
     model = Post
     template_name = 'blog_app/index.html'
     context_object_name = 'post_list'
+    paginate_by = 10
 
     def get_queryset(self):
         # 在类视图中，从URL捕获的路径参数值保存在实例的kwargs属性里(字典)，非路径参数值保存在实例的args属性里(列表)。
@@ -80,7 +81,7 @@ class PostDetailView(DetailView):
 
 def profile(request):
     context = {
-        'pic_url': 'https://avatars0.githubusercontent.com/u/29137126',
+        'pic_url': '/media/editor/29137126_20200914094431032591.jpg',
         'nick_name': '大诚',
         'email': '1193685537@qq.com',
         'position': '武汉',
